@@ -27,7 +27,7 @@ const ChatList = () => {
       </div>
 
       {/* chat list */}
-      <div className='overflow-y-auto flex flex-col'>
+      <div className='overflow-y-auto flex flex-col max-h-[80%]'>
         <div className='pb-3 flex items-center cursor-pointer gap-3 border-b border-[#dddddd35]'>
           <img
             src='https://www.kindpng.com/picc/m/394-3947019_round-profile-picture-png-transparent-png.png'
