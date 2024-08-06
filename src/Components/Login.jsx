@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { toast } from 'react-toastify';
 
 const Login = () => {
   const [avator, setAvator] = useState({
@@ -15,8 +14,11 @@ const Login = () => {
   };
 
   const handleLogin = (e) => {
-    e.preventDefault;
-    toast.warn("")
+    e.preventDefault();
+  };
+
+  const handleRegister = (e) => {
+    e.preventDefault();
   };
 
   return (
@@ -53,7 +55,10 @@ const Login = () => {
         <div className='mb-3 font-bold text-2xl'>
           Create an <span className='text-[#FFA500]'>Account</span>
         </div>
-        <form className='flex flex-col items-center justify-center gap-5'>
+        <form
+          className='flex flex-col items-center justify-center gap-5'
+          onSubmit={handleRegister}
+        >
           <label
             htmlFor='file'
             className='flex items-center justify-between cursor-pointer underline gap-5'
