@@ -1,4 +1,7 @@
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
+import { auth } from '../lib/firebase';
 
 const Login = () => {
   const [avator, setAvator] = useState({
@@ -7,18 +10,33 @@ const Login = () => {
   });
 
   const handleAvator = (e) => {
-    setAvator({
-      file: e.target.files[0],
-      url: URL.createObjectURL(e.target.files[0]),
-    });
+    if (e.target.files[0]) {
+      setAvator({
+        file: e.target.files[0],
+        url: URL.createObjectURL(e.target.files[0]),
+      });
+    }
   };
 
   const handleLogin = (e) => {
     e.preventDefault();
   };
 
-  const handleRegister = (e) => {
+  // it should be an async function becz we are making dadabase request.
+
+  const handleRegister = async (e) => {
     e.preventDefault();
+    const formData = new FormData(e.target);
+
+    const { username, email, password } = Object.fromEntries(formData);
+    // console.log(username)
+
+    try {
+      const res = await createUserWithEmailAndPassword(auth, email, password);
+    } catch (err) {
+      console.log(err);
+      toast.error(err.message);
+    }
   };
 
   return (
